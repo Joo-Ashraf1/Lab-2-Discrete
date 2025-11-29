@@ -1,33 +1,22 @@
 import java.util.HashMap;
 
-public class GCDUsingFactorization {
-    public static long GCD(long a , long b){
-        if (a == 0)
-            return Math.abs(b);
-        if (b == 0)
-            return Math.abs(a);
+public class PrimeFactorization {
+    public static HashMap<Long , Integer> calculateFactors(long n){
+        HashMap<Long , Integer> factors = new HashMap<>();
 
-        HashMap<Long ,Integer> factors_a = PrimeFactorization.calculateFactors(a);
-        HashMap<Long ,Integer> factors_b = PrimeFactorization.calculateFactors(b);
-
-        long Gcd = 1 ;
-
-        for (var entry : factors_a.entrySet()) {
-            int power ;
-            Long prim = entry.getKey();
-            int count_a = entry.getValue();
-            int count_b = 0 ;
-
-
-            if (factors_b.containsKey(prim)){
-                count_b = factors_b.get(prim);
+        for(long d = 2; d * d <= n ; d++){
+            int count = 0 ;
+            while(n % d == 0){
+                count ++ ;
+                factors.put(d , count) ;
+                n /= d ;
             }
-
-            power = Math.min(count_a, count_b);
-
-            Gcd *= (long) Math.pow(prim , power);
+        }
+        // N is prime
+        if (n > 1){
+            factors.put(n , 1);
         }
 
-        return Gcd ;
+        return factors ;
     }
 }
