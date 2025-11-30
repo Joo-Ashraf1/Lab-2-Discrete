@@ -1,11 +1,13 @@
 import static java.lang.Math.sqrt;
+//Singletoon design pattern
+
 
 public class SeivePrimes {
-    private static int N= (int) 1e7+2;
-    private boolean[] isPrime;
+    private static final int N= (int) 1e7+2;
+    private static boolean[] isPrime;
 
-
-    public SeivePrimes(){
+    private static final SeivePrimes seive = new SeivePrimes();
+    private SeivePrimes(){
 
         isPrime=new boolean[N];
         //initialize with true except 1,0
@@ -23,6 +25,11 @@ public class SeivePrimes {
         }
 
     }
+
+    public static SeivePrimes getInstanse(){
+        return seive;
+    }
+
     public boolean isPrime(long n){
         return isPrime[(int)n];
     }
