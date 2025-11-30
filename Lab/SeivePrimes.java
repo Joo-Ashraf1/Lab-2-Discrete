@@ -11,13 +11,13 @@ public class SeivePrimes {
 
         isPrime=new boolean[N];
         //initialize with true except 1,0
-        for(int i=2; i <= N; i++){
+        for(int i=2; i < N; i++){
             isPrime[i]=true;
         }
         //apply seive
-        for(int i=2; i*i <= N; i++){
+        for(int i=2; i*i < N; i++){
             if(isPrime[i]){
-                for(int j=i*i ; j <= N; j+=i){
+                for(int j=i*i ; j < N; j+=i){
                     isPrime[j]=false;
                 }
 
